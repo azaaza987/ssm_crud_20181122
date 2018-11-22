@@ -51,7 +51,7 @@ public class MapperTest {
 //		departmentMapper.insertSelective(new Department(null, "测试部"));
 		
 		//2、生成员工数据，测试员工插入
-		employeeMapper.insertSelective(new Employee(null, "Jerry", "M", "Jerry@atguigu.com", 1));
+		employeeMapper.insertSelective(new Employee(null, "Jerry", "M", "Jerry@atguigu.com", 2));
 		
 		//3、批量插入多个员工；批量，使用可以执行批量操作的sqlSession。
 		
