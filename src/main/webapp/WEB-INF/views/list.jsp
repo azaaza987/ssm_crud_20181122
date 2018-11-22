@@ -82,9 +82,9 @@
 			<div class="col-md-6">
 				<nav aria-label="Page navigation">
 				<ul class="pagination">
-					<li><a href="${APP_PATH }/emps?pn=1">首页</a></li>
+					<li><a href="${APP_PATH }/emps_test?pn=1">首页</a></li>
 					<c:if test="${pageInfo.hasPreviousPage }">
-						<li><a href="${APP_PATH }/emps?pn=${pageInfo.pageNum-1}"
+						<li><a href="${APP_PATH }/emps_test?pn=${pageInfo.pageNum-1}"
 							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li>
 					</c:if>
@@ -95,21 +95,43 @@
 							<li class="active"><a href="#">${page_Num }</a></li>
 						</c:if>
 						<c:if test="${page_Num != pageInfo.pageNum }">
-							<li><a href="${APP_PATH }/emps?pn=${page_Num }">${page_Num }</a></li>
+							<li><a href="${APP_PATH }/emps_test?pn=${page_Num }">${page_Num }</a></li>
 						</c:if>
 
 					</c:forEach>
 					<c:if test="${pageInfo.hasNextPage }">
-						<li><a href="${APP_PATH }/emps?pn=${pageInfo.pageNum+1 }"
+						<li><a href="${APP_PATH }/emps_test?pn=${pageInfo.pageNum+1 }"
 							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 						</a></li>
 					</c:if>
-					<li><a href="${APP_PATH }/emps?pn=${pageInfo.pages}">末页</a></li>
+					<li><a href="${APP_PATH }/emps_test?pn=${pageInfo.pages}">末页</a></li>
 				</ul>
 				</nav>
 			</div>
 		</div>
-		
 	</div>
+		<script type="text/javascript">
+	
+		var totalRecord,currentPage;
+		//1、页面加载完成以后，直接去发送ajax请求,要到分页数据
+		$(function(){
+			//去首页
+			alert('Test');
+			to_page(1);
+		});
+		
+		function to_page(pn){
+			$.ajax({
+				url:"${APP_PATH}/emps",
+				data:"pn="+pn,
+				type:"GET",
+				success:function(result){
+					alert(result);
+					console.log(result);
+				}
+			});
+		}
+		
+	  </script>
 </body>
 </html>
