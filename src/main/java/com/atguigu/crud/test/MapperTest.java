@@ -2,7 +2,9 @@ package com.atguigu.crud.test;
 
 import java.util.UUID;
 
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import com.atguigu.crud.dao.EmployeeMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:applicationContext.xml"})
+//@ContextConfiguration(locations={"classpath:applicationContext.xml","classpath:mybatis-config2.xml"})
 public class MapperTest {
 	
 	@Autowired
@@ -34,6 +37,10 @@ public class MapperTest {
 	
 	@Autowired
 	SqlSession sqlSession;
+	
+
+	@Autowired
+	SqlSessionFactory sqlSessionFactory;
 	
 	/**
 	 * 测试DepartmentMapper
@@ -53,8 +60,8 @@ public class MapperTest {
 		//2、生成员工数据，测试员工插入
 		employeeMapper.insertSelective(new Employee(null, "Jerry", "M", "Jerry@atguigu.com", 2));
 		
-		//3、批量插入多个员工；批量，使用可以执行批量操作的sqlSession。
 		
+		//3、批量插入多个员工；批量，使用可以执行批量操作的sqlSession。
 //		for(){
 //			employeeMapper.insertSelective(new Employee(null, , "M", "Jerry@atguigu.com", 1));
 //		}
@@ -63,7 +70,16 @@ public class MapperTest {
 			String uid = UUID.randomUUID().toString().substring(0,5)+i;
 			mapper.insertSelective(new Employee(null,uid, "M", uid+"@atguigu.com", 1));
 		}
-		System.out.println("批量完成");
+		
+		//4 如果不通过配置类获取可批量的sqlSession，也可如下获取一个
+		SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
+		mapper = sqlSession.getMapper(EmployeeMapper.class);
+	    for (int i = 0; i < 100; i++) {
+	    	String uid = UUID.randomUUID().toString().substring(0,5)+i;
+			mapper.insertSelective(new Employee(null,uid, "F", uid+"@Shawn.com", 1));
+	    }
+	    sqlSession.commit();
+	    long end = System.currentTimeMillis();
 		
 	}
 

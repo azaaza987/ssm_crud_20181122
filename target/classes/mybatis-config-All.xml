@@ -8,11 +8,11 @@
         <!-- 开启驼峰匹配 -->
         <setting name="mapUnderscoreToCamelCase" value="true" />
     </settings>
-    <typeAliases>
+    
         <!-- 设置别名 -->
-         <typeAlias type="cn.itcast.mybatis.pojo.User" alias="User"/> 
-        <!-- <package name="cn.itcast.mybatis.pojo.User" alias="User"/> -->
-    </typeAliases>
+   	<typeAliases>
+		<package name="com.atguigu.crud.bean"/>
+	</typeAliases>
     
     <plugins>
         <!-- 通用Mapper插件 -->
@@ -46,10 +46,5 @@
         </environment>
     </environments>
     
-    <mappers>
-        <!-- 引入Mapper.xml -->
-        <!-- <mapper resource="UserMapper.xml" /> -->
-        
-        <package name="cn.itcast.mybatis.mapper"/>
-    </mappers>
+	
 </configuration>

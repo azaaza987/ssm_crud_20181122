@@ -426,9 +426,9 @@
 		$("#emp_save_btn").click(function(){
 			//1、模态框中填写的表单数据提交给服务器进行保存
 			//1、先对要提交给服务器的数据进行校验
-			if(!validate_add_form()){
-				return false;
-			};
+			//if(!validate_add_form()){
+			//	return false;
+			//};
 			//1、判断之前的ajax用户名校验是否成功。如果成功。
 			if($(this).attr("ajax-va")=="error"){
 				return false;
