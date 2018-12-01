@@ -1,15 +1,15 @@
 # ssm_crud_20181122
-# https://github.com/EnJong/SSM-CRUD
 
-SSM-CRUD
+
+
 整合一个查询系统 
 
 功能点
 1. 分页
 2. 数据校验
 Jquery前端校验+JSR303后端校验
-
 3. Ajax
+Bootstrap+Jquery 页面元素和Ajax
 4. Rest风格的URI；使用HTTP协议请求方式的动词来表示对资源的操作（GET（查询）， POST（新增），PUT（修改），DELETE(删除)）
 技术点
 基础框架-ssm（SpringMVC+Spring_MyBatis）
